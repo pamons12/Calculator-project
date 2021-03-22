@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView screenTextView;
     private String operation="";
     private String currentNum="0";
-    List<String> enteredNums = new List<String>();
+    private String totalNumWithOp="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         cButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentNum.length()==1 || Pattern.matches("[-]\\d+",currentNum)){
+                if (currentNum.length()==1 || Pattern.matches("[-]\\d?",currentNum)){
                     currentNum="0";
                 } else{
                     currentNum = currentNum.substring(0,currentNum.length()-1);
@@ -50,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
         posNegButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!operation.equals("")){
+                    totalNumWithOp+=currentNum+operation;
+                    currentNum="0";
+                    operation="";
+                }
                 if (Pattern.matches("[-]+\\d+",currentNum)){
                     currentNum=currentNum.substring(1,currentNum.length());
                 }else{
@@ -106,7 +111,12 @@ public class MainActivity extends AppCompatActivity {
         zeroButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentNum.equals("0")){
+                if (!operation.equals("")){
+                    totalNumWithOp+=currentNum+operation;
+                    currentNum="0";
+                    operation="";
+                }
+                if (currentNum.equals("0") || currentNum.equals("-0")){
                     currentNum="0";
                 }else{
                     currentNum+="0";
@@ -118,8 +128,17 @@ public class MainActivity extends AppCompatActivity {
         oneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentNum.equals("0")){
-                    currentNum="1";
+                if (!operation.equals("")){
+                    totalNumWithOp+=currentNum+operation;
+                    currentNum="0";
+                    operation="";
+                }
+                if (currentNum.equals("0") || currentNum.equals("-0")){
+                    if (currentNum.equals("0")){
+                        currentNum="1";
+                    }else{
+                        currentNum="-1";
+                    }
                 }else{
                     currentNum+="1";
                 }
@@ -130,8 +149,17 @@ public class MainActivity extends AppCompatActivity {
         twoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentNum.equals("0")){
-                    currentNum="2";
+                if (!operation.equals("")){
+                    totalNumWithOp+=currentNum+operation;
+                    currentNum="0";
+                    operation="";
+                }
+                if (currentNum.equals("0") || currentNum.equals("-0")){
+                    if (currentNum.equals("0")){
+                        currentNum="2";
+                    }else{
+                        currentNum="-2";
+                    }
                 }else{
                     currentNum+="2";
                 }
@@ -142,8 +170,17 @@ public class MainActivity extends AppCompatActivity {
         threeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentNum.equals("0")){
-                    currentNum="3";
+                if (!operation.equals("")){
+                    totalNumWithOp+=currentNum+operation;
+                    currentNum="0";
+                    operation="";
+                }
+                if (currentNum.equals("0") || currentNum.equals("-0")){
+                    if (currentNum.equals("0")){
+                        currentNum="3";
+                    }else{
+                        currentNum="-3";
+                    }
                 }else{
                     currentNum+="3";
                 }
@@ -154,8 +191,17 @@ public class MainActivity extends AppCompatActivity {
         fourButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentNum.equals("0")){
-                    currentNum="4";
+                if (!operation.equals("")){
+                    totalNumWithOp+=currentNum+operation;
+                    currentNum="0";
+                    operation="";
+                }
+                if (currentNum.equals("0") || currentNum.equals("-0")){
+                    if (currentNum.equals("0")){
+                        currentNum="4";
+                    }else{
+                        currentNum="-4";
+                    }
                 }else{
                     currentNum+="4";
                 }
@@ -166,8 +212,17 @@ public class MainActivity extends AppCompatActivity {
         fiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentNum.equals("0")){
-                    currentNum="5";
+                if (!operation.equals("")){
+                    totalNumWithOp+=currentNum+operation;
+                    currentNum="0";
+                    operation="";
+                }
+                if (currentNum.equals("0") || currentNum.equals("-0")){
+                    if (currentNum.equals("0")){
+                        currentNum="5";
+                    }else{
+                        currentNum="-5";
+                    }
                 }else{
                     currentNum+="5";
                 }
@@ -178,8 +233,17 @@ public class MainActivity extends AppCompatActivity {
         sixButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentNum.equals("0")){
-                    currentNum="6";
+                if (!operation.equals("")){
+                    totalNumWithOp+=currentNum+operation;
+                    currentNum="0";
+                    operation="";
+                }
+                if (currentNum.equals("0") || currentNum.equals("-0")){
+                    if (currentNum.equals("0")){
+                        currentNum="6";
+                    }else{
+                        currentNum="-6";
+                    }
                 }else{
                     currentNum+="6";
                 }
@@ -190,8 +254,17 @@ public class MainActivity extends AppCompatActivity {
         sevenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentNum.equals("0")){
-                    currentNum="7";
+                if (!operation.equals("")){
+                    totalNumWithOp+=currentNum+operation;
+                    currentNum="0";
+                    operation="";
+                }
+                if (currentNum.equals("0") || currentNum.equals("-0")){
+                    if (currentNum.equals("0")){
+                        currentNum="7";
+                    }else{
+                        currentNum="-7";
+                    }
                 }else{
                     currentNum+="7";
                 }
@@ -202,8 +275,17 @@ public class MainActivity extends AppCompatActivity {
         eightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentNum.equals("0")){
-                    currentNum="8";
+                if (!operation.equals("")){
+                    totalNumWithOp+=currentNum+operation;
+                    currentNum="0";
+                    operation="";
+                }
+                if (currentNum.equals("0") || currentNum.equals("-0")){
+                    if (currentNum.equals("0")){
+                        currentNum="8";
+                    }else{
+                        currentNum="-8";
+                    }
                 }else{
                     currentNum+="8";
                 }
@@ -214,20 +296,25 @@ public class MainActivity extends AppCompatActivity {
         nineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentNum.equals("0")){
-                    currentNum="9";
+                if (!operation.equals("")){
+                    totalNumWithOp+=currentNum+operation;
+                    currentNum="0";
+                    operation="";
+                }
+                if (currentNum.equals("0") || currentNum.equals("-0")){
+                    if (currentNum.equals("0")){
+                        currentNum="9";
+                    }else{
+                        currentNum="-9";
+                    }
                 }else{
                     currentNum+="9";
                 }
+
                 screenTextView.setText(currentNum);
             }
         });
 
-        public void addValueToListAndReset(){
-            enteredNums.add(currentNum);
-            currentNum="0";
-
-        }
 
     }
 }
