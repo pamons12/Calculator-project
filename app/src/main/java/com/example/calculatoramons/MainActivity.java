@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     private String operation="";
     private String currentNum="0";
     private String totalNumWithOp="";
+    private String result="";
+
+    List<String> listOfNumAndOp = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 currentNum="0";
                 operation="";
+                totalNumWithOp="";
+                listOfNumAndOp.clear();
                 screenTextView.setText(currentNum);
             }
         });
@@ -68,7 +75,16 @@ public class MainActivity extends AppCompatActivity {
         equalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),currentNum,Toast.LENGTH_SHORT).show();
+                totalNumWithOp+=currentNum;
+                if(checkSyntax(totalNumWithOp)){
+                    System.out.println("CheckSyntax is True");
+                    result=doCalculation();
+                }
+                currentNum="0";
+                operation="";
+                totalNumWithOp="";
+                listOfNumAndOp.clear();
+                screenTextView.setText(result);
             }
         });
 
@@ -77,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                operation="plus";
+                operation="+";
                 Toast.makeText(getApplicationContext(),"Addition",Toast.LENGTH_SHORT).show();
             }
         });
@@ -85,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                operation="subtract";
+                operation="-";
                 Toast.makeText(getApplicationContext(),"Subtraction",Toast.LENGTH_SHORT).show();
             }
         });
@@ -93,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         multiplyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                operation="multiply";
+                operation="*";
                 Toast.makeText(getApplicationContext(),"Multiplication",Toast.LENGTH_SHORT).show();
             }
         });
@@ -101,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         divideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                operation="division";
+                operation="/";
                 Toast.makeText(getApplicationContext(),"Division",Toast.LENGTH_SHORT).show();
             }
         });
@@ -317,4 +333,46 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private boolean checkSyntax(String totalNumWithOp) {
+
+        Matcher matcher = Pattern.compile("\\d+\\D+").matcher(totalNumWithOp);
+        while (matcher.find()) {
+            listOfNumAndOp.add(matcher.group());
+        }
+        matcher = Pattern.compile("\\d+$").matcher(totalNumWithOp);
+        while (matcher.find()) {
+            listOfNumAndOp.add(matcher.group());
+        }
+
+        if (listOfNumAndOp.size()==1){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    private String doCalculation() {
+        String currentString;
+        String lastChar;
+        for(int i=0; i<listOfNumAndOp.size() ;i++){
+            currentString=listOfNumAndOp.get(i);
+            lastChar=String.valueOf(currentString.charAt(currentString.length()-1));
+            System.out.println(lastChar);
+            if(lastChar.equals("*")){
+                System.out.println("Multiplication");
+            }
+            if(lastChar.equals("/")){
+                System.out.println("Division");
+            }
+            if(lastChar.equals("+")){
+                System.out.println("Addition");
+            }
+            if(lastChar.equals("-")){
+                System.out.println("Subtraction");
+            }
+        }
+        return "Test";
+    }
+
 }
