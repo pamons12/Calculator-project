@@ -34,12 +34,18 @@ public class MainActivity extends AppCompatActivity {
         cButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentNum.length()==1 || Pattern.matches("[-]\\d?",currentNum)){
+                if (currentNum.length()==1 || Pattern.matches("[n]+\\d?",currentNum)){
                     currentNum="0";
                 } else{
                     currentNum = currentNum.substring(0,currentNum.length()-1);
                 }
-                screenTextView.setText(currentNum);
+
+                if (Pattern.matches("[n]+\\d+",currentNum)){
+                    String firstRemoved = currentNum.substring(1);
+                    screenTextView.setText("-"+currentNum.substring(1));
+                }else {
+                    screenTextView.setText(currentNum);
+                }
             }
         });
         Button ceButton = (Button) findViewById(R.id.ceButton);
@@ -62,12 +68,13 @@ public class MainActivity extends AppCompatActivity {
                     currentNum="0";
                     operation="";
                 }
-                if (Pattern.matches("[-]+\\d+",currentNum)){
+                if (Pattern.matches("[n]+\\d+",currentNum)){
                     currentNum=currentNum.substring(1,currentNum.length());
+                    screenTextView.setText(currentNum);
                 }else{
-                    currentNum="-"+currentNum;
+                    screenTextView.setText("-"+currentNum);
+                    currentNum="n"+currentNum;
                 }
-                screenTextView.setText(currentNum);
             }
         });
 
@@ -76,9 +83,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 totalNumWithOp+=currentNum;
-                if(checkSyntax(totalNumWithOp)){
-                    System.out.println("CheckSyntax is True");
-                    result=doCalculation();
+
+                //For testing
+                //totalNumWithOp="8/4";
+
+                if(checkSyntax(totalNumWithOp)) {
+                    result = doCalculation();
+                }else{
+                    result = totalNumWithOp;
                 }
                 currentNum="0";
                 operation="";
@@ -132,12 +144,17 @@ public class MainActivity extends AppCompatActivity {
                     currentNum="0";
                     operation="";
                 }
-                if (currentNum.equals("0") || currentNum.equals("-0")){
+                if (currentNum.equals("0") || currentNum.equals("n0")){
                     currentNum="0";
                 }else{
                     currentNum+="0";
                 }
-                screenTextView.setText(currentNum);
+                if (Pattern.matches("[n]+\\d+",currentNum)){
+                    String firstRemoved = currentNum.substring(1);
+                    screenTextView.setText("-"+currentNum.substring(1));
+                }else {
+                    screenTextView.setText(currentNum);
+                }
             }
         });
         Button oneButton = (Button) findViewById(R.id.oneButton);
@@ -149,16 +166,22 @@ public class MainActivity extends AppCompatActivity {
                     currentNum="0";
                     operation="";
                 }
-                if (currentNum.equals("0") || currentNum.equals("-0")){
+                if (currentNum.equals("0") || currentNum.equals("n0")){
                     if (currentNum.equals("0")){
                         currentNum="1";
                     }else{
-                        currentNum="-1";
+                        currentNum="n1";
                     }
                 }else{
                     currentNum+="1";
                 }
-                screenTextView.setText(currentNum);
+
+                if (Pattern.matches("[n]+\\d+",currentNum)){
+                    String firstRemoved = currentNum.substring(1);
+                    screenTextView.setText("-"+currentNum.substring(1));
+                }else {
+                    screenTextView.setText(currentNum);
+                }
             }
         });
         Button twoButton = (Button) findViewById(R.id.twoButton);
@@ -170,16 +193,22 @@ public class MainActivity extends AppCompatActivity {
                     currentNum="0";
                     operation="";
                 }
-                if (currentNum.equals("0") || currentNum.equals("-0")){
+                if (currentNum.equals("0") || currentNum.equals("n0")){
                     if (currentNum.equals("0")){
                         currentNum="2";
                     }else{
-                        currentNum="-2";
+                        currentNum="n2";
                     }
                 }else{
                     currentNum+="2";
                 }
-                screenTextView.setText(currentNum);
+
+                if (Pattern.matches("[n]+\\d+",currentNum)){
+                    String firstRemoved = currentNum.substring(1);
+                    screenTextView.setText("-"+currentNum.substring(1));
+                }else {
+                    screenTextView.setText(currentNum);
+                }
             }
         });
         Button threeButton = (Button) findViewById(R.id.threeButton);
@@ -191,16 +220,22 @@ public class MainActivity extends AppCompatActivity {
                     currentNum="0";
                     operation="";
                 }
-                if (currentNum.equals("0") || currentNum.equals("-0")){
+                if (currentNum.equals("0") || currentNum.equals("n0")){
                     if (currentNum.equals("0")){
                         currentNum="3";
                     }else{
-                        currentNum="-3";
+                        currentNum="n3";
                     }
                 }else{
                     currentNum+="3";
                 }
-                screenTextView.setText(currentNum);
+
+                if (Pattern.matches("[n]+\\d+",currentNum)){
+                    String firstRemoved = currentNum.substring(1);
+                    screenTextView.setText("-"+currentNum.substring(1));
+                }else {
+                    screenTextView.setText(currentNum);
+                }
             }
         });
         Button fourButton = (Button) findViewById(R.id.fourButton);
@@ -212,16 +247,22 @@ public class MainActivity extends AppCompatActivity {
                     currentNum="0";
                     operation="";
                 }
-                if (currentNum.equals("0") || currentNum.equals("-0")){
+                if (currentNum.equals("0") || currentNum.equals("n0")){
                     if (currentNum.equals("0")){
                         currentNum="4";
                     }else{
-                        currentNum="-4";
+                        currentNum="n4";
                     }
                 }else{
                     currentNum+="4";
                 }
-                screenTextView.setText(currentNum);
+
+                if (Pattern.matches("[n]+\\d+",currentNum)){
+                    String firstRemoved = currentNum.substring(1);
+                    screenTextView.setText("-"+currentNum.substring(1));
+                }else {
+                    screenTextView.setText(currentNum);
+                }
             }
         });
         Button fiveButton = (Button) findViewById(R.id.fiveButton);
@@ -233,16 +274,22 @@ public class MainActivity extends AppCompatActivity {
                     currentNum="0";
                     operation="";
                 }
-                if (currentNum.equals("0") || currentNum.equals("-0")){
+                if (currentNum.equals("0") || currentNum.equals("n0")){
                     if (currentNum.equals("0")){
                         currentNum="5";
                     }else{
-                        currentNum="-5";
+                        currentNum="n5";
                     }
                 }else{
                     currentNum+="5";
                 }
-                screenTextView.setText(currentNum);
+
+                if (Pattern.matches("[n]+\\d+",currentNum)){
+                    String firstRemoved = currentNum.substring(1);
+                    screenTextView.setText("-"+currentNum.substring(1));
+                }else {
+                    screenTextView.setText(currentNum);
+                }
             }
         });
         Button sixButton = (Button) findViewById(R.id.sixButton);
@@ -254,16 +301,22 @@ public class MainActivity extends AppCompatActivity {
                     currentNum="0";
                     operation="";
                 }
-                if (currentNum.equals("0") || currentNum.equals("-0")){
+                if (currentNum.equals("0") || currentNum.equals("n0")){
                     if (currentNum.equals("0")){
                         currentNum="6";
                     }else{
-                        currentNum="-6";
+                        currentNum="n6";
                     }
                 }else{
                     currentNum+="6";
                 }
-                screenTextView.setText(currentNum);
+
+                if (Pattern.matches("[n]+\\d+",currentNum)){
+                    String firstRemoved = currentNum.substring(1);
+                    screenTextView.setText("-"+currentNum.substring(1));
+                }else {
+                    screenTextView.setText(currentNum);
+                }
             }
         });
         Button sevenButton = (Button) findViewById(R.id.sevenButton);
@@ -275,16 +328,22 @@ public class MainActivity extends AppCompatActivity {
                     currentNum="0";
                     operation="";
                 }
-                if (currentNum.equals("0") || currentNum.equals("-0")){
+                if (currentNum.equals("0") || currentNum.equals("n0")){
                     if (currentNum.equals("0")){
                         currentNum="7";
                     }else{
-                        currentNum="-7";
+                        currentNum="n7";
                     }
                 }else{
                     currentNum+="7";
                 }
-                screenTextView.setText(currentNum);
+
+                if (Pattern.matches("[n]+\\d+",currentNum)){
+                    String firstRemoved = currentNum.substring(1);
+                    screenTextView.setText("-"+currentNum.substring(1));
+                }else {
+                    screenTextView.setText(currentNum);
+                }
             }
         });
         Button eightButton = (Button) findViewById(R.id.eightButton);
@@ -296,16 +355,22 @@ public class MainActivity extends AppCompatActivity {
                     currentNum="0";
                     operation="";
                 }
-                if (currentNum.equals("0") || currentNum.equals("-0")){
+                if (currentNum.equals("0") || currentNum.equals("n0")){
                     if (currentNum.equals("0")){
                         currentNum="8";
                     }else{
-                        currentNum="-8";
+                        currentNum="n8";
                     }
                 }else{
                     currentNum+="8";
                 }
-                screenTextView.setText(currentNum);
+
+                if (Pattern.matches("[n]+\\d+",currentNum)){
+                    String firstRemoved = currentNum.substring(1);
+                    screenTextView.setText("-"+currentNum.substring(1));
+                }else {
+                    screenTextView.setText(currentNum);
+                }
             }
         });
         Button nineButton = (Button) findViewById(R.id.nineButton);
@@ -317,17 +382,22 @@ public class MainActivity extends AppCompatActivity {
                     currentNum="0";
                     operation="";
                 }
-                if (currentNum.equals("0") || currentNum.equals("-0")){
+                if (currentNum.equals("0") || currentNum.equals("n0")){
                     if (currentNum.equals("0")){
                         currentNum="9";
                     }else{
-                        currentNum="-9";
+                        currentNum="n9";
                     }
                 }else{
                     currentNum+="9";
                 }
 
-                screenTextView.setText(currentNum);
+                if (Pattern.matches("[n]+\\d+",currentNum)){
+                    String firstRemoved = currentNum.substring(1);
+                    screenTextView.setText("-"+currentNum.substring(1));
+                }else {
+                    screenTextView.setText(currentNum);
+                }
             }
         });
 
@@ -336,11 +406,14 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean checkSyntax(String totalNumWithOp) {
 
-        Matcher matcher = Pattern.compile("\\d+\\D+").matcher(totalNumWithOp);
+        //Expression that is neg or pos followed by digit and operation
+        Matcher matcher = Pattern.compile("[n]?\\d+\\D{1}").matcher(totalNumWithOp);
         while (matcher.find()) {
             listOfNumAndOp.add(matcher.group());
         }
-        matcher = Pattern.compile("\\d+$").matcher(totalNumWithOp);
+
+        //Digit followed by no operation, can be pos or neg
+        matcher = Pattern.compile("[n]?\\d+$").matcher(totalNumWithOp);
         while (matcher.find()) {
             listOfNumAndOp.add(matcher.group());
         }
@@ -353,26 +426,144 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String doCalculation() {
+        Integer runningTotal=0;
+        runningTotal = doOperation("*",runningTotal);
+        runningTotal = doOperation("/",runningTotal);
+        runningTotal = doOperation("+",runningTotal);
+        runningTotal = doOperation("-",runningTotal);
+        return runningTotal.toString();
+    }
+
+    private int doOperation(String operation,Integer runningTotal) {
         String currentString;
         String lastChar;
-        for(int i=0; i<listOfNumAndOp.size() ;i++){
-            currentString=listOfNumAndOp.get(i);
-            lastChar=String.valueOf(currentString.charAt(currentString.length()-1));
-            System.out.println(lastChar);
-            if(lastChar.equals("*")){
-                System.out.println("Multiplication");
+        String nextString;
+        Integer currentValue;
+        Integer nextValueInt;
+        Integer currentValueSign;
+        Integer nextValueSign;
+
+        //Checks entire list/all values in the list
+        for (int i = 0; i < listOfNumAndOp.size(); i++) {
+            //The string we are currently looking at
+            currentString = listOfNumAndOp.get(i);
+            //Last char of the string we are looking at
+            lastChar = String.valueOf(listOfNumAndOp.get(i).charAt(currentString.length() - 1));
+
+            //If currentString is only d, skips iteration, nothing to be done
+            if (Pattern.matches("[d]{1}",currentString)) {
+                continue;
             }
-            if(lastChar.equals("/")){
-                System.out.println("Division");
+
+            //Attempts to see if value is neg
+            if (Pattern.matches("[n]{1}\\d+\\D?",currentString)){
+                currentString = currentString.substring(1);
+                currentValueSign=-1;
+            }else {
+                currentValueSign=1;
             }
-            if(lastChar.equals("+")){
-                System.out.println("Addition");
+
+            //Attemps to convert current string to current value (an int)
+            //If currentString is d(operation)
+            if (Pattern.matches("[d]+\\D{1}", currentString)) {
+                currentValue = runningTotal;
+            } else {
+
+                //currentString has a operation at the end
+                if (currentString.length() > 1) {
+                    currentValue = Integer.parseInt(currentString.substring(0, currentString.length() - 1));
+                    currentValue *= currentValueSign;
+
+                    //currentString is just a number, no operation
+                } else {
+                    currentValue = Integer.parseInt(currentString);
+                    currentValue *= currentValueSign;
+                }
             }
-            if(lastChar.equals("-")){
-                System.out.println("Subtraction");
+            if (lastChar.equals(operation)) {
+                nextString = listOfNumAndOp.get(i + 1);
+
+                //Check for d, if value has been operated on before
+                if (Pattern.matches("[d]{1}", nextString)) {
+
+                    //Checks operation to do the correct operation
+                    if (operation.equals("*")){
+                        runningTotal = currentValue * runningTotal;
+                    }else if (operation.equals("/")){
+                        runningTotal = currentValue / runningTotal;
+                    } else if (operation.equals("+")){
+                        runningTotal = currentValue + runningTotal;
+                    }else {
+                        runningTotal = currentValue - runningTotal;
+                    }
+                    //Set current string to d, removing the operation from the end
+                    // Because it was just operated on
+                    listOfNumAndOp.set(i,"d");
+
+                } else {
+
+                    //Attempts to see if next string is neg
+                    if (Pattern.matches("[n]{1}\\d+\\D?",nextString)){
+                        nextString = nextString.substring(1);
+                        nextValueSign=-1;
+                    }else {
+                        nextValueSign=1;
+                    }
+
+                    //If nextValue is just a digit, the last number in the overall string ie: 3 in 1+2+3
+                    if (Pattern.matches("\\d+$", nextString)) {
+                        //Convert nextString to int
+                        nextValueInt = Integer.parseInt(nextString);
+                        nextValueInt *= nextValueSign;
+
+                        //Checks operation to do the correct operation
+                        if (operation.equals("*")){
+                            runningTotal = currentValue * nextValueInt;
+                        }else if (operation.equals("/")){
+                            runningTotal = currentValue / nextValueInt;
+                        } else if (operation.equals("+")){
+                            runningTotal = currentValue + nextValueInt;
+                        }else {
+                            runningTotal = currentValue - nextValueInt;
+                        }
+
+                        //Set both next string and current string to d
+                        //Because they have been operated on and next value is just a digit
+                        // so it does not need its operation saved appended
+                        listOfNumAndOp.set(i + 1,"d");
+                        listOfNumAndOp.set(i,"d");
+
+                        //If next value is a normal string so not last in overall string ie: 123+
+                    } else {
+                        //Convert nextString to int, excluding the operation
+                        nextValueInt = Integer.parseInt(nextString.substring(0, nextString.length() - 1));
+                        nextValueInt *= nextValueSign;
+
+                        //Checks operation to do the correct operation
+                        if (operation.equals("*")){
+                            runningTotal = currentValue * nextValueInt;
+                        }else if (operation.equals("/")){
+                            runningTotal = currentValue / nextValueInt;
+                        } else if (operation.equals("+")){
+                            runningTotal = currentValue + nextValueInt;
+                        }else {
+                            runningTotal = currentValue - nextValueInt;
+                        }
+
+                        //Set to next string to d(operation) and current string to d
+                        //Because they have been operated on
+                        listOfNumAndOp.set(i + 1, "d" + String.valueOf(nextString.charAt(nextString.length() - 1)));
+                        listOfNumAndOp.set(i,"d");
+                    }
+                }
             }
         }
-        return "Test";
+        return runningTotal;
+    }
+    private void printList(){
+        for(int i=0;i<listOfNumAndOp.size();i++){
+            System.out.print(listOfNumAndOp.get(i)+" ");
+        }
     }
 
 }
