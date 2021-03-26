@@ -20,8 +20,9 @@ public class MainActivity extends AppCompatActivity {
     private String currentNum="0";
     private String totalNumWithOp="";
     private String result="";
+    private Boolean equalPressed;
 
-    List<String> listOfNumAndOp = new ArrayList<String>();
+    ArrayList<String> listOfNumAndOp = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 totalNumWithOp="";
                 listOfNumAndOp.clear();
                 screenTextView.setText(currentNum);
+                equalPressed = false;
             }
         });
         Button posNegButton = (Button) findViewById(R.id.posNegButton);
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         equalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                equalPressed = true;
                 totalNumWithOp+=currentNum;
 
                 //For testing
@@ -139,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         zeroButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                equalPressed = false;
                 if (!operation.equals("")){
                     totalNumWithOp+=currentNum+operation;
                     currentNum="0";
@@ -150,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
                     currentNum+="0";
                 }
                 if (Pattern.matches("[n]+\\d+",currentNum)){
-                    String firstRemoved = currentNum.substring(1);
                     screenTextView.setText("-"+currentNum.substring(1));
                 }else {
                     screenTextView.setText(currentNum);
@@ -161,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         oneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                equalPressed = false;
                 if (!operation.equals("")){
                     totalNumWithOp+=currentNum+operation;
                     currentNum="0";
@@ -177,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (Pattern.matches("[n]+\\d+",currentNum)){
-                    String firstRemoved = currentNum.substring(1);
                     screenTextView.setText("-"+currentNum.substring(1));
                 }else {
                     screenTextView.setText(currentNum);
@@ -188,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
         twoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                equalPressed = false;
                 if (!operation.equals("")){
                     totalNumWithOp+=currentNum+operation;
                     currentNum="0";
@@ -204,7 +208,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (Pattern.matches("[n]+\\d+",currentNum)){
-                    String firstRemoved = currentNum.substring(1);
                     screenTextView.setText("-"+currentNum.substring(1));
                 }else {
                     screenTextView.setText(currentNum);
@@ -215,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
         threeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                equalPressed = false;
                 if (!operation.equals("")){
                     totalNumWithOp+=currentNum+operation;
                     currentNum="0";
@@ -231,7 +235,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (Pattern.matches("[n]+\\d+",currentNum)){
-                    String firstRemoved = currentNum.substring(1);
                     screenTextView.setText("-"+currentNum.substring(1));
                 }else {
                     screenTextView.setText(currentNum);
@@ -242,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
         fourButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                equalPressed = false;
                 if (!operation.equals("")){
                     totalNumWithOp+=currentNum+operation;
                     currentNum="0";
@@ -258,7 +262,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (Pattern.matches("[n]+\\d+",currentNum)){
-                    String firstRemoved = currentNum.substring(1);
                     screenTextView.setText("-"+currentNum.substring(1));
                 }else {
                     screenTextView.setText(currentNum);
@@ -269,6 +272,7 @@ public class MainActivity extends AppCompatActivity {
         fiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                equalPressed = false;
                 if (!operation.equals("")){
                     totalNumWithOp+=currentNum+operation;
                     currentNum="0";
@@ -285,7 +289,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (Pattern.matches("[n]+\\d+",currentNum)){
-                    String firstRemoved = currentNum.substring(1);
                     screenTextView.setText("-"+currentNum.substring(1));
                 }else {
                     screenTextView.setText(currentNum);
@@ -296,6 +299,7 @@ public class MainActivity extends AppCompatActivity {
         sixButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                equalPressed = false;
                 if (!operation.equals("")){
                     totalNumWithOp+=currentNum+operation;
                     currentNum="0";
@@ -312,7 +316,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (Pattern.matches("[n]+\\d+",currentNum)){
-                    String firstRemoved = currentNum.substring(1);
                     screenTextView.setText("-"+currentNum.substring(1));
                 }else {
                     screenTextView.setText(currentNum);
@@ -323,6 +326,7 @@ public class MainActivity extends AppCompatActivity {
         sevenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                equalPressed = false;
                 if (!operation.equals("")){
                     totalNumWithOp+=currentNum+operation;
                     currentNum="0";
@@ -339,7 +343,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (Pattern.matches("[n]+\\d+",currentNum)){
-                    String firstRemoved = currentNum.substring(1);
                     screenTextView.setText("-"+currentNum.substring(1));
                 }else {
                     screenTextView.setText(currentNum);
@@ -350,6 +353,7 @@ public class MainActivity extends AppCompatActivity {
         eightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                equalPressed = false;
                 if (!operation.equals("")){
                     totalNumWithOp+=currentNum+operation;
                     currentNum="0";
@@ -366,7 +370,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (Pattern.matches("[n]+\\d+",currentNum)){
-                    String firstRemoved = currentNum.substring(1);
                     screenTextView.setText("-"+currentNum.substring(1));
                 }else {
                     screenTextView.setText(currentNum);
@@ -377,6 +380,7 @@ public class MainActivity extends AppCompatActivity {
         nineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                equalPressed = false;
                 if (!operation.equals("")){
                     totalNumWithOp+=currentNum+operation;
                     currentNum="0";
@@ -401,6 +405,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Check to see if save state != null
+        //If not null will load values from save state into numOfPeople, checkTotal, and tipPercent
+        if (savedInstanceState != null) {
+            operation = savedInstanceState.getString("operation");
+            currentNum = savedInstanceState.getString("currentNum");
+            totalNumWithOp = savedInstanceState.getString("totalNumWithOp");
+            result = savedInstanceState.getString("result");
+            equalPressed = savedInstanceState.getBoolean("equalPressed");
+            listOfNumAndOp = savedInstanceState.getStringArrayList("listOfNumAndOp");
+            if (equalPressed){
+                screenTextView.setText(result);
+            }else{
+                screenTextView.setText(currentNum);
+            }
+        }
 
     }
 
@@ -564,6 +583,18 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0;i<listOfNumAndOp.size();i++){
             System.out.print(listOfNumAndOp.get(i)+" ");
         }
+    }
+
+    //Saves variables numOfPeople, checkTotal, and tipPercent in a save state in case screen is rotated
+    @Override
+    protected void onSaveInstanceState(Bundle saveState) {
+        super.onSaveInstanceState(saveState);
+        saveState.putString("operation",operation);
+        saveState.putString("currentNum",currentNum);
+        saveState.putString("totalNumWithOp",totalNumWithOp);
+        saveState.putString("result",result);
+        saveState.putBoolean("equalPressed",equalPressed);
+        saveState.putStringArrayList("listOfNumAndOp",listOfNumAndOp);
     }
 
 }
